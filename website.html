@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hadhi ❤️ Sherin</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, #ffebee, #fff0f0);
+            color: #4a2c2c;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        header {
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4.8rem;
+            margin: 0;
+            color: #e91e63;
+        }
+        
+        .subtitle {
+            font-size: 1.8rem;
+            margin: 10px 0;
+            color: #6d4c41;
+        }
+        
+        .heart {
+            color: #e91e63;
+            font-size: 2.2rem;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+        
+        .photo {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid #fff;
+            box-shadow: 0 15px 35px rgba(233, 30, 99, 0.3);
+            margin: 30px auto;
+        }
+        
+        .message {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            font-size: 1.4rem;
+            line-height: 1.8;
+        }
+        
+        .proposal-btn {
+            background: #e91e63;
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            font-size: 1.6rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 30px 0;
+            box-shadow: 0 10px 25px rgba(233, 30, 99, 0.4);
+            transition: all 0.3s;
+        }
+        
+        .proposal-btn:hover {
+            transform: scale(1.1);
+            background: #c2185b;
+        }
+        
+        .yes-btn {
+            background: #4caf50;
+            padding: 20px 60px;
+            font-size: 2rem;
+        }
+        
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .heart-float {
+            position: absolute;
+            font-size: 2rem;
+            color: #e91e63;
+            animation: floatHeart linear infinite;
+            opacity: 0.7;
+        }
+        
+        @keyframes floatHeart {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="hearts"></div>
+    
+    <div class="container">
+        <header>
+            <h1>Hadhi <span class="heart">❤️</span> Sherin</h1>
+            <p class="subtitle">Forever starts with one beautiful question...</p>
+        </header>
+
+        <!-- Replace this with your actual couple photo URL -->
+        <img src="https://via.placeholder.com/280" alt="Hadhi & Sherin" class="photo" id="couple-photo">
+        
+        <div class="message">
+            <p>My dearest Sherin,</p>
+            <p>From the moment you came into my life, everything changed for the better. Your smile brightens my darkest days, your laugh is my favorite sound, and your love makes me feel complete.</p>
+            <p>You are my peace, my happiness, and the person I want to spend every tomorrow with.</p>
+            <p>With all my heart, I want to ask you...</p>
+        </div>
+
+        <button class="proposal-btn" onclick="showProposal()">Will you marry me, Sherin?</button>
+
+        <div id="proposal-section" style="display: none;">
+            <h2 style="color: #e91e63; font-size: 3rem;">Sherin, will you be my wife?</h2>
+            <p style="font-size: 1.5rem; margin: 30px 0;">I promise to love you, cherish you, and make you happy every single day for the rest of our lives ❤️</p>
+            
+            <button class="proposal-btn yes-btn" onclick="sayYes()">Yes, I will! ❤️</button>
+            <br><br>
+            <p style="font-size: 1.2rem; color: #6d4c41;">(Only one correct answer 😉)</p>
+        </div>
+
+        <div id="yes-message" style="display: none; margin-top: 40px; padding: 40px; background: white; border-radius: 20px;">
+            <h1 style="font-family: 'Great Vibes', cursive; color: #e91e63; font-size: 4.5rem;">She said YES!!! 🎉💕</h1>
+            <p style="font-size: 2rem;">Thank you for making me the happiest man alive, Sherin.</p>
+            <p>Our forever journey begins now...</p>
+        </div>
+    </div>
+
+    <script>
+        // Floating hearts animation
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart-float';
+            heart.innerHTML = ['❤️','💕','💖','💗'][Math.floor(Math.random()*4)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 7 + 9) + 's';
+            heart.style.fontSize = (Math.random() * 1.8 + 1.8) + 'rem';
+            document.getElementById('hearts').appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 18000);
+        }
+        
+        setInterval(createHeart, 350);
+
+        function showProposal() {
+            document.getElementById('proposal-section').style.display = 'block';
+            document.getElementById('proposal-section').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function sayYes() {
+            document.getElementById('yes-message').style.display = 'block';
+            document.getElementById('proposal-section').style.display = 'none';
+            
+            // Extra celebration hearts
+            for(let i = 0; i < 80; i++) {
+                setTimeout(createHeart, i * 30);
+            }
+        }
+
+        // Optional: Add your real photo here
+        // document.getElementById('couple-photo').src = "https://your-actual-photo-link.jpg";
+    </script>
+</body>
+</html>
